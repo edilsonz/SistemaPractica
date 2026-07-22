@@ -1,0 +1,21 @@
+# Dependencias y artefactos generados
+**/node_modules/
+**/dist/
+**/coverage/
+
+# Configuración confidencial y registros
+**/.env
+**/.env.*
+!**/.env.example
+*.log
+
+# Archivos del sistema y editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Respaldos de base de datos (nunca al repositorio)
+database/backup/
+
+# Variables de entorno de producción
+deployment/.env
