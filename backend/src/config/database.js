@@ -29,6 +29,9 @@ const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   port: DB_PORT ? Number(DB_PORT) : 3306,
   dialect: 'mysql',
   logging: NODE_ENV === 'development' ? console.log : false,
+  dialectOptions: NODE_ENV === 'production'
+    ? { ssl: { require: true, rejectUnauthorized: false } }
+    : {},
 });
 
 module.exports = sequelize;

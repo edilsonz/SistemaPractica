@@ -1,8 +1,8 @@
 // Opcional: semillas simples. Puedes ejecutarlo manualmente si lo deseas.
 // Ejecución sugerida: node src/migrations/seed.js
 
-const { Usuario, Estudiante, Convocatoria } = require('../models');
-const bcrypt = require('bcryptjs');
+const { Usuario, Estudiante, Convocatoria } = require('../../backend/src/models');
+const bcrypt = require('../../backend/node_modules/bcryptjs');
 
 async function seed() {
   const [adminPassword, empresaPassword, estudiantePassword] = await Promise.all([
