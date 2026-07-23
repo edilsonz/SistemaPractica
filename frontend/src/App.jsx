@@ -351,7 +351,7 @@ export default function App() {
     return (
       <div className="d-flex flex-column" style={{ minHeight: '100vh', background: '#f4f6fb' }}>
         {/* Navbar */}
-        <Navbar pendingCount={navbarPendingCount} />
+        <Navbar user={user} logout={handleLogout} pendingCount={navbarPendingCount} />
 
         {/* Toast container — flotante, sobre todo */}
         <ToastContainer toasts={toasts} onRemove={removeToast} />

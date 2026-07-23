@@ -1,10 +1,10 @@
 /**
  * Navbar — Barra superior de la aplicación.
  * Muestra el nombre del sistema, datos del usuario y botón de cierre de sesión.
+ * Recibe user y logout como props desde App.jsx (no depende de AuthContext).
  */
 
 import React from 'react';
-import { useAuth } from '../../context/AuthContext';
 
 const ROL_LABEL = { admin: 'Administrador', empresa: 'Organización', estudiante: 'Estudiante' };
 
@@ -13,8 +13,7 @@ function getInitial(nombre) {
   return (nombre || '?').trim().charAt(0).toUpperCase();
 }
 
-export default function Navbar({ pendingCount = 0 }) {
-  const { user, logout } = useAuth();
+export default function Navbar({ user, logout, pendingCount = 0 }) {
 
   return (
     <nav className="sp-navbar navbar navbar-dark px-3 px-md-4">

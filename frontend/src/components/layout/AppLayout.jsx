@@ -40,13 +40,13 @@ const NAV_ITEMS = {
 
 const DEFAULT_PAGE = { admin: 'dashboard', empresa: 'inicio', estudiante: 'inicio' };
 
-export default function AppLayout({ userRole, children, renderPage }) {
+export default function AppLayout({ userRole, user, logout, children, renderPage }) {
   const [activePage, setActivePage] = useState(DEFAULT_PAGE[userRole] || 'inicio');
   const navItems = NAV_ITEMS[userRole] || [];
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Navbar />
+      <Navbar user={user} logout={logout} />
       <div className="container-fluid flex-grow-1">
         <div className="row h-100">
           {/* Sidebar */}
