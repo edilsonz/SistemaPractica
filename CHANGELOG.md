@@ -5,6 +5,33 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es/1.0.0/).
 
 ---
 
+## [1.1.0] — Julio 2026
+
+### Mejoras de Interfaz y Preparación para Producción
+
+#### Agregado — UI/UX
+- `frontend/src/index.css` — Sistema de diseño propio con variables CSS, clases `.sp-*`, scrollbar personalizado, fuente del sistema.
+- `AuthScreen.jsx` — Pantalla de autenticación con layout split hero/formulario. Panel izquierdo con branding UNSCH, features y stats. Responsive: colapsa a formulario solo en móvil.
+- `Toast.jsx` / `ToastContainer` — Cola de notificaciones flotante (fixed top-right) con animación slide-in/out, barra de progreso de 4s y auto-dismiss. Reemplaza el alert de barra completa.
+- Animación de entrada de página (`sp-page-enter`) al cambiar de sección.
+- Navegación móvil horizontal scrollable (antes el sidebar no era accesible en móvil sin menú hamburgesa).
+
+#### Modificado — UI/UX
+- `Navbar.jsx` — Avatar circular con inicial del usuario, coloreado por rol (admin/empresa/estudiante), badge numérico de pendientes, botón salir con icono SVG, responsive.
+- `Sidebar.jsx` — Borde izquierdo en ítem activo, cabecera de rol con gradiente, badges de pendientes por ítem según rol, divisor antes de Configuración. Usa clases CSS del sistema de diseño.
+- `LoadingSpinner.jsx` — Tres puntos pulsantes CSS. Prop `overlay` para superposición con blur.
+- `EmptyState.jsx` — SVGs inline temáticos (búsqueda, lista, inbox, campana, usuarios, check). Emoji como fallback para retrocompatibilidad.
+- `Convocatorias.jsx` — Indicador de días restantes (`DiasRestantesTag`): badge crítico parpadeante (≤3 días), cierre "Hoy", borde izquierdo amarillo, botón deshabilitado si plazo vencido.
+- `App.jsx` — Integra `AuthScreen`, `ToastContainer`, nuevo `Navbar` con `pendingCount`, nuevo `Sidebar` con `sidebarBadges` calculados por rol. Ref para evitar doble carga en Strict Mode.
+
+#### Agregado — Despliegue
+- `backend/Dockerfile` — Node 20 Alpine, `npm ci --omit=dev`, expone puerto 4000.
+- `frontend/Dockerfile` — Build multietapa (Node 20 builder → nginx 1.27 Alpine), `VITE_API_URL` como build arg, cache de assets con `immutable`.
+- `backend/.dockerignore` y `frontend/.dockerignore`.
+- `deployment/docker-compose.yml` — Corregido: `VITE_API_URL` pasa como `build arg` (no variable de entorno de runtime, ya que Vite la incrusta en el bundle durante el build).
+
+---
+
 ## [1.0.0] — Julio 2026
 
 ### Reorganización y Arquitectura Profesional

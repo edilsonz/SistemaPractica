@@ -49,14 +49,14 @@ services:
     build:
       context: ../frontend
       dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL}
     container_name: unsch_frontend
     restart: unless-stopped
     depends_on:
       - backend
     ports:
       - "80:80"
-    environment:
-      VITE_API_URL: ${VITE_API_URL}
 
 volumes:
   db_data:
